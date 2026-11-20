@@ -1,0 +1,65 @@
+# selected word indices path
+
+# candidate_events_path: '/Users/delacroix/Documents/Coding/dRSA/exploring models/candidate event selection/cond1-gpt.npy'
+# candidate_events_path: '/Users/delacroix/Documents/Coding/dRSA/exploring models/candidate event selection/cond2-gpt.npy'
+# candidate_events_path: '/Users/delacroix/Documents/Coding/dRSA/exploring models/candidate event selection/cond3-gpt.npy'
+# candidate_events_path: '/Users/delacroix/Documents/Coding/dRSA/exploring models/candidate event selection/cond4-gpt.npy'
+# candidate_events_path: '/Users/delacroix/Documents/Coding/dRSA/exploring models/candidate event selection/q25_indices-gpt.npy'
+candidate_events_path: '/Users/delacroix/Documents/Coding/dRSA/exploring models/candidate event selection/q75_indices-gpt.npy'
+
+transcript_path: /Users/delacroix/Documents/Academia/Projects/Predictive Processing/data and code/podcast_ECoG_data/stimuli/podcast_transcript.csv
+
+# ===== neural data =====
+
+neural_data_folder_path: /Users/delacroix/Documents/Academia/Projects/Predictive Processing/data and code/ecog_data/npa/
+simulation: false
+simulation_neural_data_path: 
+
+frequency_band: unfiltered
+region: all
+
+neural_rdm_metric: correlation
+
+# ===== models =====
+
+models:
+
+  - name: llama3
+    path: /Users/delacroix/Documents/Coding/dRSA/exploring models/event based embeddings/Llama_embedding_Layer3.npy
+    rdm_metric: cosine
+
+  - name: llama10
+    path: /Users/delacroix/Documents/Coding/dRSA/exploring models/event based embeddings/Llama_embedding_Layer10.npy
+    rdm_metric: cosine
+    
+  - name: llama16
+    path: /Users/delacroix/Documents/Coding/dRSA/exploring models/event based embeddings/Llama_embedding_Layer16.npy
+    rdm_metric: cosine
+
+  - name: llama22
+    path: /Users/delacroix/Documents/Coding/dRSA/exploring models/event based embeddings/Llama_embedding_Layer22.npy
+    rdm_metric: cosine
+
+  - name: llama29
+    path: /Users/delacroix/Documents/Coding/dRSA/exploring models/event based embeddings/Llama_embedding_Layer29.npy
+    rdm_metric: cosine
+
+
+# ===== Parameters =====
+
+n_subsamples: 50
+subsampling_iterations: 10
+subsample_duration_sec: 1.5
+
+resolution: 100
+
+# ===== makeplot-only parameters, here for easy access =====
+
+merge_model_plots: false           # true = one combined plot; false = grid, one row per model
+
+# ===== Other =====
+
+double_precision: false
+save_plots: true
+
+output_directory: (not in use yet)

@@ -71,13 +71,16 @@ double_precision = config['double_precision']
 tps = selected_neural_data.shape[1]
 subsample_tps = int(subsample_duration_sec * resolution) # subsample size in tps - also number of RDMs calculated for each subsample
 
-
 # candidate wods
 candidate_events_path = Path(config['candidate_events_path'])
 candidate_events = np.load(candidate_events_path) # word_ids/indices
 
-# get corresponding start times on neural time series
+excluded_events_path = config.get('excluded_events_path', None)
+if excluded_events_path:
+    excluded_events = np.load(excluded_events_path)
+    candidate_events = candidate_events[~np.isin(candidate_events, excluded_events)]
 
+# get corresponding start times on neural time series
 # select event candidates corresponding tps in the neural time series based on candidate_events
 transcript_path = config['transcript_path']
 df = df = pd.read_csv(transcript_path)
@@ -88,6 +91,10 @@ df_with_tps['end'] = np.floor(df['end'] * resolution).astype(int)
 df_with_tps
 
 word_start_tps = df_with_tps['start'].to_numpy()
+
+# index based alignement fix (comment out if not using for miasligned models)
+# df_no_duplicates = df.drop_duplicates(subset='word_idx', keep='first')
+# candidate_events = df_no_duplicates[df_no_duplicates['word_idx'].isin(candidate_events)].index.to_list()
 
 
 # run
